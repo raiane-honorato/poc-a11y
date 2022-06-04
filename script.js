@@ -117,5 +117,10 @@ popupCloseBtn.addEventListener("click", () => {
   handleTabIndexOutsideMenu(tabIndexItemList2);
 });
 
+const signUpBtn = document.querySelector(".popup-wrap__form__btn");
 
-
+signUpBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  handleExpandAndClose(true, learnButton, popupSection, 'popup-section--transition');
+  handleTabIndexOutsideMenu(tabIndexItemList2);
+});
