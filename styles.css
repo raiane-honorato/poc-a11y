@@ -12,6 +12,27 @@
   font-family: var(--font);
 }
 
+.header__skip-navigation,
+.header__skip-navigation:active,
+.header__skip-navigation:hover {
+  text-indent: 100%; 
+	white-space: nowrap;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  color: transparent;
+  position: absolute;
+}
+
+.header__skip-navigation:focus {
+  text-indent: 0%;
+  overflow: auto;
+  color: var(--almost-black);
+  width: auto;
+  height: auto;
+  top: 1px;
+}
+
 ul {
   list-style: none;
 }
