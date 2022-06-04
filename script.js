@@ -1,15 +1,13 @@
 const menuBtn = document.querySelector('#menu-btn');
 const menu = document.querySelector('#menu');
+const tabIndexItemList = ['#menu-btn', ".header__home-link", '.main-section__btn'];
 
 const handleExpandAndClose = (isOpen, clickElement, expandElement, className = '') => {
 
   clickElement.setAttribute('aria-expanded', !isOpen);
-  // expandElement.hidden = !expandElement.hidden;
-
   if(className){
     expandElement.classList.toggle(className);
   }
-
   if(!isOpen) {
     if(expandElement.querySelector('button')){
       expandElement.querySelector('button').focus();
@@ -35,17 +33,33 @@ const handleOutsideClick = (element, btn, callbackFunction = () => {}) => {
   }
 
   document.body.addEventListener("click", onClick);
+}
 
+const handleTabIndexOutsideMenu = () => {
+  tabIndexItemList.forEach((query) => {
+    let element = document.querySelector(query);
+    let elementTabIndex = element.tabIndex;
+    if(elementTabIndex === 0){
+      element.setAttribute("tabIndex", -1);
+      return null;
+    }
+    if(elementTabIndex === -1){
+      element.setAttribute("tabIndex", 0);
+      return null;
+    }
+  })
 }
 
 menuBtn.addEventListener('click', () => {
   const isOpen = JSON.parse(menuBtn.getAttribute('aria-expanded'));
   handleExpandAndClose(isOpen, menuBtn, menu, 'menu-transition');
+  handleTabIndexOutsideMenu();
 });
 
 menu.addEventListener('click', (e) => {
   if(e.offsetX < 0){
     handleExpandAndClose(true, menuBtn, menu, 'menu-transition');
+    handleTabIndexOutsideMenu();
   }
 });
 
@@ -53,6 +67,7 @@ const closeMenuBtn = document.querySelector('#close-menu-btn');
 
 closeMenuBtn.addEventListener('click', () => {
   handleExpandAndClose(true, menuBtn, menu, 'menu-transition');
+  handleTabIndexOutsideMenu();
 });
 
 const menuDropdownBtn = document.querySelectorAll('.navigation__menu-btn-dropdown');
