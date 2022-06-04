@@ -218,6 +218,7 @@ header {
 
 .navigation__list-dropdown__sublist-item--with-icon {
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
 
