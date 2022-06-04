@@ -5,26 +5,30 @@ const tabIndexItemList = ['#menu-btn', ".header__home-link", '.main-section__btn
 const handleExpandAndClose = (isOpen, clickElement, expandElement, className = '') => {
 
   clickElement.setAttribute('aria-expanded', !isOpen);
-  if(className){
-    expandElement.classList.toggle(className);
+  if(isOpen){
+    expandElement.classList.remove(className);
   }
   if(!isOpen) {
-    if(expandElement.querySelector('button')){
-      expandElement.querySelector('button').focus();
-      return null;
-    };
-    if( expandElement.querySelector('a')){
-      expandElement.querySelector('a').focus();
-      return null;
-    }
+    expandElement.classList.add(className);
+
+    setTimeout(() => {
+      if(expandElement.querySelector('button')){
+        expandElement.querySelector('button').focus();
+        return null;
+      };
+      if( expandElement.querySelector('a')){
+        expandElement.querySelector('a').focus();
+        return null;
+      }
+    }, 1005);
   };
   return null;
 }
 
-const handleOutsideClick = (element, btn, callbackFunction = () => {}) => {
+const handleOutsideClick = (element, btn = [], callbackFunction = () => {}) => {
   const onClick = (event) => {
 
-    if(!element.contains(event.target) && event.target !== btn){
+    if(!element.contains(event.target) && !btn.includes(event.target)){
       callbackFunction();
       document.body.removeEventListener("click", onClick);
     }
@@ -86,7 +90,25 @@ menuDropdownBtn.forEach((btn) => {
     
     handleExpandAndClose(isOpen, btn, expandList, 'dropdown-transition');
 
-    handleOutsideClick(expandList.children[0], btn, () => {handleExpandAndClose(true, btn, expandList, 'dropdown-transition'); arrowIcon.setAttribute('src', './img/icon-arrow-down.svg')});
+    handleOutsideClick(expandList.children[0], [btn], () => {handleExpandAndClose(true, btn, expandList, 'dropdown-transition'); arrowIcon.setAttribute('src', './img/icon-arrow-down.svg')});
 
   });
 });
+
+const popupSection = document.querySelector(".popup-section");
+const learnButton = document.querySelector(".main-section__btn");
+const popupCloseBtn = document.querySelector(".popup-wrap__close-btn");
+
+learnButton.addEventListener('click', () => {
+  handleExpandAndClose(false, learnButton, popupSection, 'popup-section--transition');
+  handleOutsideClick(popupSection.children[0], [learnButton,popupCloseBtn], () => {handleExpandAndClose(true, learnButton, popupSection, 'popup-section--transition')});
+
+});
+
+
+popupCloseBtn.addEventListener("click", () => {
+  handleExpandAndClose(true, learnButton, popupSection, 'popup-section--transition');
+});
+
+
+

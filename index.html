@@ -16,16 +16,16 @@
         <img src="./img/logo.svg" alt=""/>
       </a>
         <nav class="navigation">
-          <button aria-expanded="false" class="navigation__menu-btn" id="menu-btn" aria-controls="menu" aria-label="menu">
+          <button aria-expanded="false" class="global__btn" id="menu-btn" aria-controls="menu" aria-label="menu">
             <img alt src="./img/icon-menu.svg" />
           </button>
             <div id="menu" class="navigation__menu">
-              <button class="navigation__menu-btn navigation__close-menu-btn" id="close-menu-btn" aria-label="close menu">
+              <button class="global__btn navigation__close-menu-btn" id="close-menu-btn" aria-label="close menu">
                 <img alt src="./img/icon-close-menu.svg"/>
               </button>
               <ul class="navigation__menu-list">
                 <li>
-                  <button class="navigation__menu-btn navigation__menu-btn-dropdown" aria-expanded="false">
+                  <button class="global__btn navigation__menu-btn-dropdown" aria-expanded="false">
                     Features
                     <img src="./img/icon-arrow-down.svg" alt=""/>
                   </button>
@@ -51,7 +51,7 @@
                   </div>
                 </li>
                 <li class="navigation__list-dropdown__sublist-item">
-                  <button class="navigation__menu-btn  navigation__menu-btn-dropdown" aria-expanded="false">
+                  <button class="global__btn  navigation__menu-btn-dropdown" aria-expanded="false">
                     Company
                     <img src="./img/icon-arrow-down.svg" alt=""/>
                   </button>
@@ -75,8 +75,8 @@
                 </li>
               </ul>
               <div class="navigation__menu__btns-wrap">
-                <button class="navigation__menu-btn navigation__btns-wrap__login-btn" >Login</button>
-                <button class="navigation__menu-btn navigation__btns-wrap__login-btn nnavigation__menu-btn navigation__btns-wrap__register-btn" >Register</button>
+                <button class="global__btn navigation__btns-wrap__login-btn" >Login</button>
+                <button class="global__btn navigation__btns-wrap__login-btn navigation__btns-wrap__register-btn" >Register</button>
               </div>
             </div>
         </nav>
@@ -88,7 +88,7 @@
         <div class="main-section__main-content">
           <h1 class="main-section__h1">Make remote work</h1>
           <h2 class="main-section__h2">Get your team in sync, no matter your location. Streamline processes, create team rituals, and watch productivity soar.</h2>
-          <button class="main-section__btn">Lean more</button>
+          <button class="main-section__btn global__black-btn" aria-expanded="false">Learn more</button>
           <ul class="main-section__list">
             <li><img class="main-section__list__icon" alt="databiz" src="./img/client-databiz.svg"></li>
             <li><img class="main-section__list__icon" alt="audip phile" src="./img/client-audiophile.svg"></li>
@@ -98,6 +98,25 @@
         </div>
 
         <img class="main-section__image--desktop" src="./img/image-hero-desktop.png" alt></img>
+      </section>
+      <section class="popup-section">
+        <div class="popup-wrap">
+          <button aria-label="close modal" class="popup-wrap__close-btn global__btn">
+            <img src="./img/icon-close-menu.svg" alt/>
+          </button>
+          <h2 class="popup-wrap__title">Subscribe to learn more</h2>
+          <form class="popup-wrap__form">
+            <label class="popup-wrap__form__label">
+              Name
+              <input type="text" class="popup-wrap__form__input"/>
+            </label>
+            <label class="popup-wrap__form__label">
+              E-mail
+              <input type="email" class="popup-wrap__form__input"/>
+            </label>
+            <button class="popup-wrap__form__btn global__black-btn">subscribe</button>
+          </form>
+        </div>
       </section>
     </main>
     <script src="./script.js"></script>
