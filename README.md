@@ -1,4 +1,5 @@
 # Accessibility (A11y) - POC
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a228acd0-3839-46e2-b8a1-cba4a6088b6e/deploy-status)](https://app.netlify.com/sites/a11y-demo/deploys)
 
 This project has the objective of demonstrating the accessibility main concepts in front-end. A11y is an important theme that is frequently ignored by front-end developers. With simple techniques, it's possible to improve the experience of people with disabilities or deficiencies when navigating our webpage. After all, this group of people represents 25% of the global population, and our application should be accessible by everyone.
 
