@@ -125,3 +125,13 @@ signUpBtn.addEventListener("click", (e) => {
   handleExpandAndClose(true, learnButton, popupSection, 'popup-section--transition');
   handleTabIndexOutsideMenu(tabIndexItemList2);
 });
+
+const skipButton = document.querySelector(".header__skip-navigation");
+
+skipButton.addEventListener("click", (e) => {
+  console.log("clique")
+  let mainContent = document.querySelector("#main-content");
+  mainContent.setAttribute("tabIndex", 0);
+  mainContent.focus();
+  mainContent.setAttribute("tabIndex", -1);
+})
