@@ -30,4 +30,4 @@ This project aims to demonstrate:
 * `aria-controls` indicates that that element controls another one. By adding the controlled element id (`aria-controls={element-id-here}`), it is flagged that these elements are connected.
 ### Not all images should have an `alt` value
 * Images that bring meaning to the page content should have an alt value to be accessible for screen reader users.
-* Images that are used just for aesthetic goals, such as some icons or background images, should not have an `alt` value, because it won't bring valuable information to screen reader users. In that cases, the alt value should be declared as: `alt=""`" width="250" alt="application phone frame">
+* Images that are used just for aesthetic goals, such as some icons or background images, should not have an `alt` value, because it won't bring valuable information to screen reader users. In that cases, the alt value should be declared as: `alt=""`.
