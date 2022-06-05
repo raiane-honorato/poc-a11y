@@ -24,20 +24,21 @@ const handleExpandAndClose = (isOpen, clickElement, expandElement, className = '
     }, 1005);
   };
   return null;
-}
+} 
 
-const handleOutsideClick = (element, btn = [], callbackFunction = () => {}) => {
+const handleOutsideClickAndFocus = (element, btn = [], callbackFunction = () => {}) => {
   const onClick = (event) => {
-
     if(!element.contains(event.target) && !btn.includes(event.target)){
       callbackFunction();
       document.body.removeEventListener("click", onClick);
+      document.body.removeEventListener("focus", onClick, true);
     }
 
     return null;
   }
 
   document.body.addEventListener("click", onClick);
+  document.body.addEventListener("focus", onClick, true);
 }
 
 const handleTabIndexOutsideMenu = (tabIndexItemList) => {
@@ -93,7 +94,7 @@ menuDropdownBtn.forEach((btn) => {
     
     handleExpandAndClose(isOpen, btn, expandList, 'dropdown-transition');
 
-    handleOutsideClick(expandList.children[0], [btn], () => {handleExpandAndClose(true, btn, expandList, 'dropdown-transition'); arrowIcon.setAttribute('src', './img/icon-arrow-down.svg')});
+    handleOutsideClickAndFocus(expandList.children[0], [btn], () => {handleExpandAndClose(true, btn, expandList, 'dropdown-transition'); arrowIcon.setAttribute('src', './img/icon-arrow-down.svg')});
 
   });
 });
@@ -105,7 +106,7 @@ const popupCloseBtn = document.querySelector(".popup-wrap__close-btn");
 learnButton.addEventListener('click', () => {
   handleExpandAndClose(false, learnButton, popupSection, 'popup-section--transition');
   handleTabIndexOutsideMenu(tabIndexItemList2);
-  handleOutsideClick(popupSection.children[0], [learnButton,popupCloseBtn], () => {
+  handleOutsideClickAndFocus(popupSection.children[0], [learnButton,popupCloseBtn], () => {
     handleExpandAndClose(true, learnButton, popupSection, 'popup-section--transition');
     handleTabIndexOutsideMenu(tabIndexItemList2);
   });
