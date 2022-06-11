@@ -419,3 +419,47 @@ header {
   border-radius: 5px;
   border: 1px solid var(--medium-gray)
 }
+
+.alert-section {
+  position: absolute;
+  top: 20px;
+  right: -400px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--almost-white);
+  background-color: var(--almost-black);
+  border-radius: 3px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px; 
+  transition: all 1s ease-in-out;
+}
+
+.alert-section--transition {
+  right: 20px;
+  width: calc(100vw - 40px);
+  max-width: 400px;
+  height: 60px;
+  padding: 1rem;
+}
+
+.alert__text {
+  width: 90%;
+}
+
+.alert__close-btn {
+  background-color: var(--almost-white);
+  padding: 5px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.alert-section--transition>.alert__close-btn {
+display: inline;
+}
+
+.alert__close-btn>img {
+  height: 20px;
+  width: 20px;
+}

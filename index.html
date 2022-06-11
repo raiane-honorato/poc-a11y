@@ -101,23 +101,29 @@
         <img class="main-section__image--desktop" src="./img/image-hero-desktop.png" alt></img>
       </section>
       <section class="popup-section" id="popup-section">
-        <div class="popup-wrap">
+        <div class="popup-wrap" role="dialog" aria-modal="true" aria-describedby="modal_title">
           <button aria-label="Fechar modal" class="popup-wrap__close-btn global__btn">
             <img src="./img/icon-close-menu.svg" alt/>
           </button>
-          <h2 class="popup-wrap__title">Se inscreva para saber mais</h2>
+          <h2 class="popup-wrap__title" id="modal_title">Se inscreva para saber mais</h2>
           <form class="popup-wrap__form">
-            <label class="popup-wrap__form__label">
+            <label class="popup-wrap__form__label" for="input_name">
               Nome
-              <input type="text" class="popup-wrap__form__input" required placeholder="Nome"/>
+              <input type="text" id="input_name" class="popup-wrap__form__input" required placeholder="Nome"/>
             </label>
-            <label class="popup-wrap__form__label">
+            <label class="popup-wrap__form__label" for="input_email">
               E-mail
-              <input type="email" class="popup-wrap__form__input" required placeholder="E-mail"/>
+              <input type="email" class="popup-wrap__form__input" id="input_email" required placeholder="E-mail"/>
             </label>
             <button class="popup-wrap__form__btn global__black-btn">Inscrever-se</button>
           </form>
         </div>
+      </section>
+      <section class="alert-section" >
+        <span class="alert__text" id="alert" role="alert"></span>
+        <button class="global__btn alert__close-btn" aria-label="Fechar alerta">
+          <img alt src="./img/icon-close-menu.svg"/>
+        </button>
       </section>
     </main>
     <script src="./script.js"></script>

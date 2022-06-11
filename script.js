@@ -4,6 +4,7 @@ const tabIndexItemList = ['#menu-btn', ".header__home-link", '.main-section__btn
 const tabIndexItemList2 = ['#menu-btn', ".header__home-link", '.main-section__btn', "#menu button", "#menu a"];
 
 const handleExpandAndClose = (isOpen, clickElement, expandElement, className = '') => {
+  // debugger;
 
   clickElement.setAttribute('aria-expanded', !isOpen);
   if(isOpen){
@@ -13,6 +14,10 @@ const handleExpandAndClose = (isOpen, clickElement, expandElement, className = '
     expandElement.classList.add(className);
 
     setTimeout(() => {
+      if(expandElement.children[0].getAttribute("tabIndex") === "0"){
+        expandElement.children[0].focus();
+        return null;
+      }
       if(expandElement.querySelector('button')){
         expandElement.querySelector('button').focus();
         return null;
@@ -21,9 +26,8 @@ const handleExpandAndClose = (isOpen, clickElement, expandElement, className = '
         expandElement.querySelector('a').focus();
         return null;
       }
-    }, 1005);
+    }, 1100);
   };
-  return null;
 } 
 
 const handleOutsideClickAndFocus = (element, btn = [], callbackFunction = () => {}) => {
@@ -57,6 +61,27 @@ const handleTabIndexOutsideMenu = (tabIndexItemList) => {
     })
   })
 }
+
+const handleOpenAlert = (message) => {
+  let alert = document.querySelector("#alert");
+  let alertSection = document.querySelector(".alert-section");
+  alertSection.classList.add("alert-section--transition");
+
+  alert.textContent = message;
+
+  let closeBtn = document.querySelector(".alert__close-btn");
+  closeBtn.addEventListener("click", handleCloseAlert);
+
+  setTimeout(handleCloseAlert, 4000);
+}
+
+const handleCloseAlert = () => {
+  let alert = document.querySelector("#alert");
+  let alertSection = document.querySelector(".alert-section");
+  alertSection.classList.remove("alert-section--transition");
+
+  alert.textContent = "";
+};
 
 menuBtn.addEventListener('click', () => {
   const isOpen = JSON.parse(menuBtn.getAttribute('aria-expanded'));
@@ -121,15 +146,27 @@ popupCloseBtn.addEventListener("click", () => {
 const signUpBtn = document.querySelector(".popup-wrap__form__btn");
 
 signUpBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  handleExpandAndClose(true, learnButton, popupSection, 'popup-section--transition');
-  handleTabIndexOutsideMenu(tabIndexItemList2);
+  let form = document.querySelector(".popup-wrap__form");
+  let inputList = form.querySelectorAll("input");
+  let hasEmpty = false;
+
+  inputList.forEach((inputObject) => {
+    if(inputObject?.value === ''){
+      hasEmpty = true;
+    }
+  })
+
+  if(!hasEmpty) {
+    handleExpandAndClose(true, learnButton, popupSection, 'popup-section--transition');
+    handleTabIndexOutsideMenu(tabIndexItemList2);
+    handleOpenAlert("Inscrição feita com sucesso!");
+  }
+
 });
 
 const skipButton = document.querySelector(".header__skip-navigation");
 
-skipButton.addEventListener("click", (e) => {
-  console.log("clique")
+skipButton.addEventListener("click", () => {
   let mainContent = document.querySelector("#main-content");
   mainContent.setAttribute("tabIndex", 0);
   mainContent.focus();
