@@ -20,6 +20,8 @@
   overflow: hidden;
   width: 1px;
   height: 1px;
+  background-color: transparent;
+  border: none;
   color: transparent;
   position: absolute;
 }
