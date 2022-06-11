@@ -26,7 +26,7 @@ const handleExpandAndClose = (isOpen, clickElement, expandElement, className = '
         expandElement.querySelector('a').focus();
         return null;
       }
-    }, 1100);
+    }, 1001);
   };
 } 
 
@@ -65,12 +65,12 @@ const handleTabIndexOutsideMenu = (tabIndexItemList) => {
 const handleOpenAlert = (message) => {
   let alert = document.querySelector("#alert");
   let alertSection = document.querySelector(".alert-section");
-  alertSection.classList.add("alert-section--transition");
+  alertSection?.classList?.add("alert-section--transition");
 
   alert.textContent = message;
 
   let closeBtn = document.querySelector(".alert__close-btn");
-  closeBtn.addEventListener("click", handleCloseAlert);
+  closeBtn?.addEventListener("click", handleCloseAlert);
 
   setTimeout(handleCloseAlert, 4000);
 }
@@ -134,6 +134,7 @@ learnButton.addEventListener('click', () => {
   handleOutsideClickAndFocus(popupSection.children[0], [learnButton,popupCloseBtn], () => {
     handleExpandAndClose(true, learnButton, popupSection, 'popup-section--transition');
     handleTabIndexOutsideMenu(tabIndexItemList2);
+    learnButton.focus();
   });
 
 });
@@ -141,25 +142,31 @@ learnButton.addEventListener('click', () => {
 popupCloseBtn.addEventListener("click", () => {
   handleExpandAndClose(true, learnButton, popupSection, 'popup-section--transition');
   handleTabIndexOutsideMenu(tabIndexItemList2);
+  learnButton.focus();
 });
 
 const signUpBtn = document.querySelector(".popup-wrap__form__btn");
 
 signUpBtn.addEventListener("click", (e) => {
+  e.preventDefault();
   let form = document.querySelector(".popup-wrap__form");
   let inputList = form.querySelectorAll("input");
   let hasEmpty = false;
 
-  inputList.forEach((inputObject) => {
+  for(let inputObject of inputList) {
     if(inputObject?.value === ''){
       hasEmpty = true;
+      handleOpenAlert("Preencha o campo em branco");
+      inputObject.focus();
+      break;
     }
-  })
+  }
 
   if(!hasEmpty) {
+    handleOpenAlert("Inscrição feita com sucesso!");
     handleExpandAndClose(true, learnButton, popupSection, 'popup-section--transition');
     handleTabIndexOutsideMenu(tabIndexItemList2);
-    handleOpenAlert("Inscrição feita com sucesso!");
+    learnButton.focus();
   }
 
 });
